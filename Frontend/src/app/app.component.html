@@ -1,0 +1,712 @@
+<main role="main" class="main">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light shadow-sm bg-white rounded">
+    <a class="navbar-brand" href="http://celebaltech.com/#/about">
+      <img src="/assets/images/celebal.png" width="50" height="50" alt="Celebaltech">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">
+            <i class="fa fa-home"></i> &nbsp;
+            Home <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <form method="post" id="user_form">
+          <!-- {{!-- User Details --}} -->
+          <div class="row">
+            <div class="col-md-12">
+              <h4>User Details<span class="icon icon-flash"></span></h4>
+              <div id="botm-text" class=".btm" style="font-size:13px;margin-top:20px; ">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                &nbsp;Add user details.
+              </div>
+              <span class="space"></span>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="customername">Customer Name</label>
+                  <input type="text" class="form-control" id="customername" aria-describedby="customernameHelp"
+                    placeholder="Customer Name" name="customername" [(ngModel)]="formdata.customername">
+                  <small id="customernameHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i> Enter the
+                    customer name.</small>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="generateuniqueid">Generate Unique ID</label>
+                  <input type="text" class="form-control" id="generateuniqueid" aria-describedby="generateuniqueidHelp"
+                    placeholder="Generate Unique ID" name="generateuniqueid" [(ngModel)]="formdata.generateuniqueid">
+                  <small id="generateuniqueidHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i> Your
+                    ID will be generated automatically.</small>
+                </div>
+                <div class="form-group btn-fgp col-md-4">
+                  <button type="button" class="btn btn-primary btn-sm" (click)="getid()">Generate ID</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <hr>
+          <!-- {{!-- App Service Details --}} -->
+          <div class="row">
+            <div class="col-md-12">
+              <h4>App Service Details<span class="icon icon-flash"></span></h4>
+              <div id="botm-text" class=".btm" style="font-size:13px;margin-top:20px; ">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                &nbsp;Add details regarding the App services here.
+              </div>
+              <span class="space">&nbsp;</span>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="appservicename">App Service Name</label>
+                  <input type="text" class="form-control" id="appservicename" aria-describedby="appservicenameHelp"
+                    placeholder="App Service Name" name="appservicename" [(ngModel)]="formdata.appservicename">
+                  <small id="appservicenameHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i> Enter
+                    the service name of the app.</small>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="appserviceurl">App Service URL</label>
+                  <input type="text" class="form-control" id="appserviceurl" aria-describedby="appserviceurlHelp"
+                    placeholder="App Service URL" name="appserviceurl" [(ngModel)]="formdata.appserviceurl">
+                  <small id="appserviceurlHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i> Enter the
+                    url of the app.</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <hr>
+          <!-- {{!-- Data Factory Details --}} -->
+          <div class="row">
+            <div class="col-md-12">
+              <h4>Data Factory Details<span class="icon icon-flash"></span></h4>
+              <div id="botm-text" class=".btm" style="font-size:13px;margin-top:20px; ">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                &nbsp;Add details regarding Data Factory.
+              </div>
+              <span class="space">&nbsp;</span>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="datafactoryname">Data Factory Name</label>
+                  <input type="text" class="form-control" id="datafactoryname" aria-describedby="datafactorynameHelp"
+                    placeholder="Data Factory Name" name="datafactoryname" [(ngModel)]="formdata.datafactoryname">
+                  <small id="datafactorynameHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i> Enter
+                    Data Factory Name.</small>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="datafactorylocation">Data Factory Location</label>
+                  <select class="custom-select" id="datafactorylocation" name="datafactorylocation"
+                    [(ngModel)]="formdata.datafactorylocation"
+                    aria-describedby="datafactorylocationHelp">
+                    <!-- <option selected>Open this select menu</option> -->
+                    <option value="eastus">East-US</option>
+                    <option value="westus">West-US</option>
+                    <option value="Central US">Central-US</option>
+                  </select>
+                  <small id="datafactorylocationHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Select the Data Factory Location.</small>
+                </div>
+              </div>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="datafactorysources">Data Factory Sources</label>
+                  <select class="custom-select" id="datafactorysources" name="datafactorysources"
+                    [(ngModel)]="formdata.datafactorysources"
+                    aria-describedby="datafactorysourcesHelp">
+                    <!-- <option selected>Open this select menu</option> -->
+                    <option value="BQ">BQ</option>
+                    <option value="Oracle">Oracle</option>
+                    <option value="SAP">SAP</option>
+                    <option value="SalesForce">SalesForce</option>
+                  </select>
+                  <small id="datafactorysourcesHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter the Data Factory Sources.</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <hr>
+          <!-- {{!-- BQ Details --}} -->
+          <div class="row" *ngIf="formdata.datafactorysources === 'BQ'">
+            <div class="col-md-12">
+              <h4>BQ Details<span class="icon icon-flash"></span></h4>
+              <div id="botm-text" class=".btm" style="font-size:13px;margin-top:20px; ">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                &nbsp;Add details regarding BQ.
+              </div>
+              <span class="space">&nbsp;</span>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="bgprojectname">BQ Project</label>
+                  <input type="text" class="form-control" id="bgprojectname" aria-describedby="bgprojectnameHelp"
+                    placeholder="BQ Name" name="bgprojectname" [(ngModel)]="formdata.bgprojectname">
+                  <small id="bgprojectnameHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter
+                    BQ Name.</small>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="bqclientid">BQ Client ID</label>
+                  <input type="text" class="form-control" id="bqclientid" aria-describedby="bqclientidHelp"
+                    placeholder="BQ Client ID" name="bqclientid" [(ngModel)]="formdata.bqclientid">
+                  <small id="bqclientidHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter the BQ Client ID.</small>
+                </div>
+              </div>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="bqclientsecret">BQ Client Secret</label>
+                  <input type="text" class="form-control" id="bqclientsecret" aria-describedby="bqclientsecretHelp"
+                    placeholder="BQ Client Secret" name="bqclientsecret" [(ngModel)]="formdata.bqclientsecret">
+                  <small id="bqclientsecretHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter the BQ Client Secret.</small>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="bqtoken">BQ Token</label>
+                  <input type="text" class="form-control" id="bqtoken" aria-describedby="bqtokenHelp"
+                    placeholder="BQ Token" name="bqtoken" [(ngModel)]="formdata.bqtoken">
+                  <small id="bqtokenHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter the BQ Token.</small>
+                </div>
+              </div>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="bgtableschema">BQ Table Schema</label>
+                  <input type="text" class="form-control" id="bgtableschema" aria-describedby="bgtableschemaHelp"
+                    placeholder="BQ Table Schema" name="bgtableschema" [(ngModel)]="formdata.bgtableschema">
+                  <small id="bgtableschemaHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter the BQ Table Schema.</small>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="bgtablevalues">BQ Tables</label>
+                  <input type="text" class="form-control" id="bgtablevalues" aria-describedby="bgtablevaluesHelp"
+                    placeholder="BQ Tables" name="bgtablevalues" [(ngModel)]="formdata.bgtablevalues">
+                  <small id="bgtablevaluesHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter the BQ Tables.</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br *ngIf="formdata.datafactorysources === 'BQ'">
+          <hr *ngIf="formdata.datafactorysources === 'BQ'">
+          <!-- {{!-- Oracle Details --}} -->
+          <div class="row" *ngIf="formdata.datafactorysources === 'Oracle'">
+            <div class="col-md-12">
+              <h4>Oracle Details<span class="icon icon-flash"></span></h4>
+              <div id="botm-text" class=".btm" style="font-size:13px;margin-top:20px; ">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                &nbsp;Add details regarding Oracle.
+              </div>
+              <span class="space">&nbsp;</span>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="oracleservername">Oracle Server Name</label>
+                  <input type="text" class="form-control" id="oracleservername" aria-describedby="oracleservernameHelp"
+                    placeholder="Oracle Server Name" name="oracleservername" [(ngModel)]="formdata.oracleservername">
+                  <small id="oracleservernameHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter
+                    Oracle Server Name.</small>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="oracleport">Oracle Port</label>
+                  <input type="text" class="form-control" id="oracleport" aria-describedby="oracleportHelp"
+                    placeholder="Oracle Port" name="oracleport" [(ngModel)]="formdata.oracleport">
+                  <small id="oracleportHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter the Oracle Port.</small>
+                </div>
+              </div>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="oraclesid">Oracle SID</label>
+                  <input type="text" class="form-control" id="oraclesid" aria-describedby="oraclesidHelp"
+                    placeholder="Oracle SID" name="oraclesid" [(ngModel)]="formdata.oraclesid">
+                  <small id="oraclesidHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter
+                    the Oracle SID.</small>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="oracleuser">Oracle User</label>
+                  <input type="text" class="form-control" id="oracleuser" aria-describedby="oracleuserHelp"
+                    placeholder="Oracle User" name="oracleuser" [(ngModel)]="formdata.oracleuser">
+                  <small id="oracleuserHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter
+                    the Oracle User.</small>
+                </div>
+              </div>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="oraclepassword">Oracle Password</label>
+                  <input type="password" class="form-control" id="oraclepassword" aria-describedby="oraclepasswordHelp"
+                    placeholder="Oracle Password" name="oraclepassword" [(ngModel)]="formdata.oraclepassword">
+                  <small id="oraclepasswordHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter
+                    the Oracle Password.</small>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="oracleschema">Oracle Schema</label>
+                  <input type="text" class="form-control" id="oracleschema" aria-describedby="oracleschemaHelp"
+                    placeholder="Oracle Schema" name="oracleschema" [(ngModel)]="formdata.oracleschema">
+                  <small id="oracleschemaHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter
+                    the Oracle Schema.</small>
+                </div>
+              </div>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="oracletables">Oracle Tables</label>
+                  <input type="password" class="form-control" id="oracletables" aria-describedby="oracletablesHelp"
+                    placeholder="Oracle Tables" name="oracletables" [(ngModel)]="formdata.oracletables">
+                  <small id="oracletablesHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter
+                    the Oracle Tables.</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br *ngIf="formdata.datafactorysources === 'Oracle'">
+          <hr *ngIf="formdata.datafactorysources === 'Oracle'">
+          <!-- {{!-- SAP Details --}} -->
+          <div class="row" *ngIf="formdata.datafactorysources === 'SAP'">
+            <div class="col-md-12">
+              <h4>SAP Details<span class="icon icon-flash"></span></h4>
+              <div id="botm-text" class=".btm" style="font-size:13px;margin-top:20px; ">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                &nbsp;Add details regarding SAP.
+              </div>
+              <span class="space">&nbsp;</span>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="sapservername">SAP Server Name</label>
+                  <input type="text" class="form-control" id="sapservername" aria-describedby="sapservernameHelp"
+                    placeholder="SAP Server Name" name="sapservername" [(ngModel)]="formdata.sapservername">
+                  <small id="sapservernameHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter
+                    SAP Server Name.</small>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="sapusername">SAP Username</label>
+                  <input type="text" class="form-control" id="sapusername" aria-describedby="sapusernameHelp"
+                    placeholder="SAP Username" name="sapusername" [(ngModel)]="formdata.sapusername">
+                  <small id="sapusernameHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter the SAP Username.</small>
+                </div>
+              </div>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="sappassword">SAP Password</label>
+                  <input type="password" class="form-control" id="sappassword" aria-describedby="sappasswordHelp"
+                    placeholder="SAP Password" name="sappassword" [(ngModel)]="formdata.sappassword">
+                  <small id="sappasswordHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter
+                    the SAP Password String.</small>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="sapschema">SAP Schema</label>
+                  <input type="text" class="form-control" id="sapschema" aria-describedby="sapschemaHelp"
+                    placeholder="SAP Schema" name="sapschema" [(ngModel)]="formdata.sapschema">
+                  <small id="sapschemaHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter
+                    the SAP Schema String.</small>
+                </div>
+              </div>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="saptables">SAP Tables</label>
+                  <input type="password" class="form-control" id="saptables" aria-describedby="saptablesHelp"
+                    placeholder="SAP Tables" name="saptables" [(ngModel)]="formdata.saptables">
+                  <small id="saptablesHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter
+                    the SAP Tables String.</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br *ngIf="formdata.datafactorysources === 'SAP'">
+          <hr *ngIf="formdata.datafactorysources === 'SAP'">
+          <!-- {{!-- SalesForce Details --}} -->
+          <div class="row" *ngIf="formdata.datafactorysources === 'SalesForce'">
+            <div class="col-md-12">
+              <h4>SalesForce Details<span class="icon icon-flash"></span></h4>
+              <div id="botm-text" class=".btm" style="font-size:13px;margin-top:20px; ">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                &nbsp;Add details regarding SalesForce.
+              </div>
+              <span class="space">&nbsp;</span>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="salesforceusername">SalesForce Username</label>
+                  <input type="text" class="form-control" id="salesforceusername"
+                    aria-describedby="salesforceusernameHelp" placeholder="SalesForce Username"
+                    name="salesforceusername" [(ngModel)]="formdata.salesforceusername">
+                  <small id="salesforceusernameHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter
+                    SalesForce Username.</small>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="salesforcepassword">Salesforce Password</label>
+                  <input type="text" class="form-control" id="salesforcepassword"
+                    aria-describedby="salesforcepasswordHelp" placeholder="Salesforce Password"
+                    name="salesforcepassword" [(ngModel)]="formdata.salesforcepassword">
+                  <small id="salesforcepasswordHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter the Salesforce Password.</small>
+                </div>
+              </div>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="salesforcetoken">Salesforce Token</label>
+                  <input type="text" class="form-control" id="salesforcetoken" aria-describedby="salesforcetokenHelp"
+                    placeholder="Salesforce Token" name="salesforcetoken" [(ngModel)]="formdata.salesforcetoken">
+                  <small id="salesforcetokenHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter
+                    the Salesforce Token.</small>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="salesforceschema">Salesforce Schema</label>
+                  <input type="text" class="form-control" id="salesforceschema" aria-describedby="salesforceschemaHelp"
+                    placeholder="Salesforce Schema" name="salesforceschema" [(ngModel)]="formdata.salesforceschema">
+                  <small id="salesforceschemaHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter
+                    the Salesforce Schema.</small>
+                </div>
+              </div>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="salesforcetables">Salesforce Tables</label>
+                  <input type="text" class="form-control" id="salesforcetables" aria-describedby="salesforcetablesHelp"
+                    placeholder="Salesforce Tables" name="salesforcetables" [(ngModel)]="formdata.salesforcetables">
+                  <small id="salesforcetablesHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter
+                    the Salesforce Tables.</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br *ngIf="formdata.datafactorysources === 'SalesForce'">
+          <hr *ngIf="formdata.datafactorysources === 'SalesForce'">
+          <!-- {{!-- Storage Account Details --}} -->
+          <div class="row">
+            <div class="col-md-12">
+              <h4>Storage Account Details<span class="icon icon-flash"></span></h4>
+              <div id="botm-text" class=".btm" style="font-size:13px;margin-top:20px; ">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                &nbsp;Add details regarding storage account.
+              </div>
+              <span class="space">&nbsp;</span>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="storageaccountname">Storage Account Name</label>
+                  <input type="text" class="form-control" id="storageaccountname"
+                    aria-describedby="storageaccountnameHelp" placeholder="Storage Account Name"
+                    name="storageaccountname" [(ngModel)]="formdata.storageaccountname">
+                  <small id="storageaccountnameHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter
+                    Storage Account Name.</small>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="accesskey">Access Key</label>
+                  <input type="text" class="form-control" id="accesskey" aria-describedby="accesskeyHelp"
+                    placeholder="Access Key" name="accesskey" [(ngModel)]="formdata.accesskey">
+                  <small id="accesskeyHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter the Access Key.</small>
+                </div>
+              </div>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="storageconnectionstring">Storage Account Connection String</label>
+                  <input type="text" class="form-control" id="storageconnectionstring"
+                    aria-describedby="storageconnectionstringHelp" placeholder="Connection String"
+                    name="storageconnectionstring" [(ngModel)]="formdata.storageconnectionstring">
+                  <small id="storageconnectionstringHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter
+                    the Storage Account Connection String.</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <hr>
+          <!-- {{!-- SQL Server Details --}} -->
+          <div class="row">
+            <div class="col-md-12">
+              <h4>SQL Server Details<span class="icon icon-flash"></span></h4>
+              <div id="botm-text" class=".btm" style="font-size:13px;margin-top:20px; ">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                &nbsp;Add the details of your SQL Server.
+              </div>
+              <span class="space">&nbsp;</span>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="sqlservername">SQL Server Name</label>
+                  <input type="text" class="form-control" id="sqlservername" aria-describedby="sqlservernameHelp"
+                    placeholder="SQL Server Name" name="sqlservername" [(ngModel)]="formdata.sqlservername">
+                  <small id="sqlservernameHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i> Enter the
+                    name of the SQL Server.</small>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="sqlserverusername">Username</label>
+                  <input type="text" class="form-control" id="sqlserverusername"
+                    aria-describedby="sqlserverusernameHelp" placeholder="Username" name="sqlserverusername"
+                    [(ngModel)]="formdata.sqlserverusername">
+                  <small id="sqlserverusernameHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter the Username.</small>
+                </div>
+              </div>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="sqlserverpassword">Password</label>
+                  <input type="password" class="form-control" id="sqlserverpassword"
+                    aria-describedby="sqlserverpasswordHelp" placeholder="Password" name="sqlserverpassword"
+                    [(ngModel)]="formdata.sqlserverpassword">
+                  <small id="sqlserverpasswordHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter the SQL Server password.</small>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="sqlserverdatabasename">Database Name</label>
+                  <input type="text" class="form-control" id="sqlserverdatabasename"
+                    aria-describedby="sqlserverdatabasenameHelp" placeholder="Database Name"
+                    name="sqlserverdatabasename" [(ngModel)]="formdata.sqlserverdatabasename">
+                  <small id="sqlserverdatabasenameHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter the Database Name.</small>
+                </div>
+              </div>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="sqlserverconnectionstring">SQL Server Connection String</label>
+                  <input type="text" class="form-control" id="sqlserverconnectionstring"
+                    aria-describedby="sqlserverconnectionstringHelp" placeholder="Connection String"
+                    name="sqlserverconnectionstring" [(ngModel)]="formdata.sqlserverconnectionstring">
+                  <small id="sqlserverconnectionstringHelp" class="form-text text-muted"><i
+                      class="fa fa-info-circle"></i>
+                    Enter the SQL Server Connection String.</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <hr>
+          <!-- {{!-- Databricks Details --}} -->
+          <div class="row">
+            <div class="col-md-12">
+              <h4>Databricks Details<span class="icon icon-flash"></span></h4>
+              <div id="botm-text" class=".btm" style="font-size:13px;margin-top:20px; ">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                &nbsp;Add the details of Databricks.
+              </div>
+              <span class="space">&nbsp;</span>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="databricksname">Databricks Name</label>
+                  <input type="text" class="form-control" id="databricksname" aria-describedby="databricksnameHelp"
+                    placeholder="Databricks Name" name="databricksname" [(ngModel)]="formdata.databricksname">
+                  <small id="databricksnameHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i> Enter
+                    the
+                    Databricks Name.</small>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="accesstoken">Access Token</label>
+                  <input type="text" class="form-control" id="accesstoken" aria-describedby="accesstokenHelp"
+                    placeholder="Access Token" name="accesstoken" [(ngModel)]="formdata.accesstoken">
+                  <small id="accesstokenHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter the Access Token.</small>
+                </div>
+              </div>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="databricksworkspaceurl">Databricks Workspace URL</label>
+                  <input type="text" class="form-control" id="databricksworkspaceurl"
+                    aria-describedby="databricksworkspaceurlHelp" placeholder="Workspace URL"
+                    name="databricksworkspaceurl" [(ngModel)]="formdata.databricksworkspaceurl">
+                  <small id="databricksworkspaceurlHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter the Workspace URL.</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <hr>
+          <!-- {{!-- Power BI Details --}} -->
+          <div class="row">
+            <div class="col-md-12">
+              <h4>Power BI Details<span class="icon icon-flash"></span></h4>
+              <div id="botm-text" class=".btm" style="font-size:13px;margin-top:20px; ">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                &nbsp;Add the following Power BI details.
+              </div>
+              <span class="space">&nbsp;</span>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="powerbiembedded">Power BI Embedded</label>
+                  <input type="text" class="form-control" id="powerbiembedded" aria-describedby="powerbiembeddedHelp"
+                    placeholder="Power BI Embedded" name="powerbiembedded" [(ngModel)]="formdata.powerbiembedded">
+                  <small id="powerbiembeddedHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i> Enter
+                    the Power BI Embedded.</small>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="powerbiadmin">Power BI Admin</label>
+                  <input type="text" class="form-control" id="powerbiadmin" aria-describedby="powerbiadminHelp"
+                    placeholder="Power BI Admin" name="powerbiadmin" [(ngModel)]="formdata.powerbiadmin">
+                  <small id="powerbiadminHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter the Power BI Admin.</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <hr>
+          <!-- {{!-- Key Vault Details --}} -->
+          <div class="row">
+            <div class="col-md-12">
+              <h4>Key Vault Details<span class="icon icon-flash"></span></h4>
+              <div id="botm-text" class=".btm" style="font-size:13px;margin-top:20px; ">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                &nbsp;Add the details for your Key Vault.
+              </div>
+              <span class="space">&nbsp;</span>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="keyvaultname">Key Vault Name</label>
+                  <input type="text" class="form-control" id="keyvaultname" aria-describedby="keyvaultnameHelp"
+                    placeholder="Key Vault Name" name="keyvaultname" [(ngModel)]="formdata.keyvaultname">
+                  <small id="keyvaultnameHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i> Enter the
+                    name of Key Vault.</small>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="keyvaultlocation">Key Vault Location</label>
+                  <select class="custom-select" id="keyvaultlocation" name="keyvaultlocation"
+                    [(ngModel)]="formdata.keyvaultlocation"
+                    aria-describedby="keyvaultlocationHelp">
+                    <!-- <option selected>Open this select menu</option> -->
+                    <option value="eastus">East-US</option>
+                    <option value="westus">West-US</option>
+                    <option value="Central US">Central-US</option>
+                  </select>
+                  <small id="keyvaultlocationHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Select the Key Vault Location.</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <hr>
+          <!-- {{!-- Subscription Details --}} -->
+          <div class="row">
+            <div class="col-md-12">
+              <h4>Subscription Details<span class="icon icon-flash"></span></h4>
+              <div id="botm-text" class=".btm" style="font-size:13px;margin-top:20px; ">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                &nbsp;Add up your subscription details.
+              </div>
+              <span class="space">&nbsp;</span>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="subscriptionid">Subscription ID</label>
+                  <input type="text" class="form-control" id="subscriptionid" aria-describedby="subscriptionidHelp"
+                    placeholder="Subscription ID" name="subscriptionid" [(ngModel)]="formdata.subscriptionid">
+                  <small id="subscriptionidHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i> Enter
+                    Subscription ID.</small>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="subscriptiontenantid">Tenant ID</label>
+                  <input type="text" class="form-control" id="subscriptiontenantid"
+                    aria-describedby="subscriptiontenantidHelp" placeholder="Tenant ID" name="subscriptiontenantid"
+                    [(ngModel)]="formdata.subscriptiontenantid">
+                  <small id="subscriptiontenantidHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter the Tenant ID.</small>
+                </div>
+              </div>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="subscriptionclientid">Client ID</label>
+                  <input type="text" class="form-control" id="subscriptionclientid"
+                    aria-describedby="subscriptionclientidHelp" placeholder="Client ID" name="subscriptionclientid"
+                    [(ngModel)]="formdata.subscriptionclientid">
+                  <small id="subscriptionclientidHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter the Client ID.</small>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="subscriptionclientsecret">Client Secret</label>
+                  <input type="text" class="form-control" id="subscriptionclientsecret"
+                    aria-describedby="subscriptionclientsecretHelp" placeholder="Client Secret"
+                    name="subscriptionclientsecret" [(ngModel)]="formdata.subscriptionclientsecret">
+                  <small id="subscriptionclientsecretHelp" class="form-text text-muted"><i
+                      class="fa fa-info-circle"></i>
+                    Enter the Client Secret.</small>
+                </div>
+              </div>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="subscriptopnresourcegroup">Resource Group</label>
+                  <input type="text" class="form-control" id="subscriptopnresourcegroup"
+                    aria-describedby="subscriptopnresourcegroupHelp" placeholder="Resource Group"
+                    name="subscriptopnresourcegroup" [(ngModel)]="formdata.subscriptopnresourcegroup">
+                  <small id="subscriptopnresourcegroupHelp" class="form-text text-muted"><i
+                      class="fa fa-info-circle"></i>
+                    Enter the Resource Group.</small>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="resourcegrouplocation">Resource Group Location</label>
+                  <select class="custom-select" id="resourcegrouplocation" name="resourcegrouplocation"
+                    [(ngModel)]="formdata.resourcegrouplocation"
+                    aria-describedby="resourcegrouplocationHelp">
+                    <!-- <option selected>Open this select menu</option> -->
+                    <option value="eastus">East-US</option>
+                    <option value="westus">West-US</option>
+                    <option value="Central US">Central-US</option>
+                  </select>
+                  <small id="resourcegrouplocationHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter the Resource Group Location.</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <hr>
+          <!-- {{!-- Azure Function Details --}} -->
+          <div class="row">
+            <div class="col-md-12">
+              <h4>Storage Account Details<span class="icon icon-flash"></span></h4>
+              <div id="botm-text" class=".btm" style="font-size:13px;margin-top:20px; ">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                &nbsp;Add details for azure function.
+              </div>
+              <span class="space">&nbsp;</span>
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <label for="azurefunctionurl">Azure Function URL</label>
+                  <input type="text" class="form-control" id="azurefunctionurl" aria-describedby="azurefunctionurlHelp"
+                    placeholder="Azure Function URL" name="azurefunctionurl" [(ngModel)]="formdata.azurefunctionurl">
+                  <small id="azurefunctionurlHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Enter the Azure Function URL.</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <hr>
+          <!-- {{!-- Submit --}} -->
+          <div class="row">
+            <div class="col-md-12">
+              <!-- {{!-- <span class="space">&nbsp;</span> --}} -->
+              <div class="f-group row">
+                <div class="form-group col-md-4">
+                  <button type="submit" class="btn btn-primary" id="finalsubmit"
+                    aria-describedby="finalsubmitHelp" (click)="submit()">Submit <i class="fa fa-upload" style="color: #fff;"></i></button>
+                  <small id="finalsubmitHelp" class="form-text text-muted"><i class="fa fa-info-circle"></i>
+                    Click this to submit the details.</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
